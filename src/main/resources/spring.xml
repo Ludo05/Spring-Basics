@@ -8,8 +8,20 @@
         <!-- 3 point classes are injected into Triangle class and referenced
         via beans below. -->
         <property name="pointA" ref="zeroPoint"/>
-        <property name="pointB" ref="onePoint"/>
-        <property name="pointC" ref="twoPoint"/>
+        <property name="pointB">
+            <!-- Inner bean is used when you know that it will only be used inside current
+               bean and nowhere else. ref attribute can not be used.-->
+            <bean class="com.lewis.springBasic.Point">
+                <property name="x"  value="-20"/>
+                <property name="y"  value="0"/>
+            </bean>
+        </property>
+        <property name="pointC">
+            <bean class="com.lewis.springBasic.Point">
+                <property name="x"  value="20"/>
+                <property name="y"  value="0"/>
+            </bean>
+        </property>
     </bean>
 
     <bean id="zeroPoint" class="com.lewis.springBasic.Point">
@@ -17,17 +29,4 @@
         <property name="x"  value="0"/>
         <property name="y"  value="0"/>
     </bean>
-
-
-    <bean id="onePoint" class="com.lewis.springBasic.Point">
-        <property name="x"  value="-20"/>
-        <property name="y"  value="0"/>
-    </bean>
-
-
-    <bean id="twoPoint" class="com.lewis.springBasic.Point">
-        <property name="x"  value="20"/>
-        <property name="y"  value="0"/>
-    </bean>
-
 </beans>
