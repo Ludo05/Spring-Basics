@@ -4,29 +4,55 @@
 <!-- id is the id used to use the bean
  class is the class which will be used to instaniate-->
 <beans>
-    <bean id="triangle" class="com.lewis.springBasic.Triangle">
+    <!-- If the id of the bean matches the member variable name of the class you can autowire by name which saves
+    the time of rewriting them in a property into the main bean.
+     while in small projects auto-wiring can save time in bigger projects we recommend explicit wiring.-->
+    <bean id="triangle" class="com.lewis.springBasic.Triangle" autowire="byName">
         <!-- 3 point classes are injected into Triangle class and referenced
         via beans below. -->
-        <property name="pointA" ref="zeroPoint"/>
-        <property name="pointB">
-            <!-- Inner bean is used when you know that it will only be used inside current
-               bean and nowhere else. ref attribute can not be used.-->
-            <bean class="com.lewis.springBasic.Point">
-                <property name="x"  value="-20"/>
-                <property name="y"  value="0"/>
-            </bean>
-        </property>
-        <property name="pointC">
-            <bean class="com.lewis.springBasic.Point">
-                <property name="x"  value="20"/>
-                <property name="y"  value="0"/>
-            </bean>
-        </property>
+
+
+        <!--
+       <property name="pointB">
+          Inner bean is used when you know that it will only be used inside current
+              bean and nowhere else. ref attribute can not be used.
+           <bean class="com.lewis.springBasic.Point">
+               <property name="x"  value="-20"/>
+               <property name="y"  value="0"/>
+           </bean>
+       </property>
+       -->
+
+
+
+       <!-- used to inject a list into the triangle class
+       <property name="pointList">
+           <list>
+               <ref bean="zeroPoint"/>
+               <ref bean="twoPoint"/>
+               <ref bean="threePoint"/>
+           </list>
+       </property>
+       -->
+
+
     </bean>
 
-    <bean id="zeroPoint" class="com.lewis.springBasic.Point">
+    <bean id="pointA" class="com.lewis.springBasic.Point">
         <!-- property are used to get member variables to use in  getters/setters methods-->
         <property name="x"  value="0"/>
         <property name="y"  value="0"/>
+    </bean>
+
+    <bean id="pointB" class="com.lewis.springBasic.Point">
+        <!-- property are used to get member variables to use in  getters/setters methods-->
+        <property name="x"  value="60"/>
+        <property name="y"  value="550"/>
+    </bean>
+
+    <bean id="pointC" class="com.lewis.springBasic.Point">
+        <!-- property are used to get member variables to use in  getters/setters methods-->
+        <property name="x"  value="20"/>
+        <property name="y"  value="50"/>
     </bean>
 </beans>
