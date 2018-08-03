@@ -7,7 +7,7 @@
     <!-- If the id of the bean matches the member variable name of the class you can autowire by name which saves
     the time of rewriting them in a property into the main bean.
      while in small projects auto-wiring can save time in bigger projects we recommend explicit wiring.-->
-    <bean id="triangle" class="com.lewis.springBasic.Triangle" autowire="byName">
+    <bean id="triangle" class="com.lewis.springBasic.Triangle" autowire="byName" init-method="myInit">
         <!-- 3 point classes are injected into Triangle class and referenced
         via beans below. -->
 

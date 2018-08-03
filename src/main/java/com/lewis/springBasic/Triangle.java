@@ -57,4 +57,8 @@ public class Triangle {
 
 
     }
+
+    public void myInit(){
+        System.out.println("Initializing beans...");
+    }
 }
