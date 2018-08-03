@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       xmlns:context="http://www.springframework.org/schema/context">
 
 <!-- id is the id used to use the bean
  class is the class which will be used to instaniate-->
-<beans>
     <!-- If the id of the bean matches the member variable name of the class you can autowire by name which saves
     the time of rewriting them in a property into the main bean.
      while in small projects auto-wiring can save time in bigger projects we recommend explicit wiring.-->
@@ -11,8 +14,15 @@
         <!-- 3 point classes are injected into Triangle class and referenced
         via beans below. -->
 
+    </bean>
 
-        <!--
+    <bean id="circle" class="com.lewis.springBasic.Circle">
+
+    </bean>
+
+    <!--  For required annotatoin. -->
+    <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor"/>
+    <!--
        <property name="pointB">
           Inner bean is used when you know that it will only be used inside current
               bean and nowhere else. ref attribute can not be used.
@@ -36,7 +46,6 @@
        -->
 
 
-    </bean>
 
     <bean id="pointA" class="com.lewis.springBasic.Point">
         <!-- property are used to get member variables to use in  getters/setters methods-->
@@ -51,8 +60,23 @@
     </bean>
 
     <bean id="pointC" class="com.lewis.springBasic.Point">
-        <!-- property are used to get member variables to use in  getters/setters methods-->
-        <property name="x"  value="20"/>
-        <property name="y"  value="50"/>
+        <!-- property are used to get member variables to use in  getters/setters methods
+        properties used to get value for x and y from file pointsconfig.properties-->
+        <property name="x"  value="${pointC.pointY}"/>
+        <property name="y"  value="${pointC.pointX}"/>
     </bean>
+
+
+    <bean id="circleBean" class="com.lewis.springBasic.Point">
+        <property name="x" value="44"/>
+        <property name="y" value="223"/>
+    </bean>
+    <!-- <bean class="com.lewis.springBasic.MyBeanFactoryPP"/> -->
+    <!-- Used to set placeholder values for beans. BeanFactoryPostProcessor -->
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="pointsconfig.properties"/>
+    </bean>
+
+    <context:annotation-config/>
+
 </beans>

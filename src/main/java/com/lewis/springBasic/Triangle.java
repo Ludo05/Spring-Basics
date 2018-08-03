@@ -4,7 +4,7 @@ import com.lewis.springBasic.Point;
 
 import java.util.List;
 
-public class Triangle {
+public class Triangle implements Shape {
 
     private Point pointA;
     private Point pointB;
@@ -51,6 +51,7 @@ public class Triangle {
             System.out.println("Point: (" + p.getX() + ", "+p.getY() + ")");
         }
         */
+        System.out.println("Drawing Triangle:");
         System.out.println("Point A (" + getPointA().getY() + "," + getPointA().getX() + ")");
         System.out.println("Point B (" + getPointB().getY() + "," + getPointB().getX() + ")" );
         System.out.println("Point C (" + getPointC().getY() + "," + getPointC().getX() + ")");
